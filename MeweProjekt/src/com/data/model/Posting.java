@@ -4,18 +4,21 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-
+@Entity
+@Table(name="Posting")
 public class Posting {
 
-	//TODO Discuss - sub-classes income/expense?
+	//TODO Discuss - sub-classes income/expense
 	
 	@Id
 	@Column(name="PostingId")
@@ -29,6 +32,7 @@ public class Posting {
 	private Date modificationDate;
 	private double amount;
 	private String currency;
+	private double sequence;
 	private String text;
 	@OneToMany(mappedBy="PostingItemID")
 	private List<PostingItem> items;
@@ -80,6 +84,12 @@ public class Posting {
 	}
 	public void setItems(List<PostingItem> items) {
 		this.items = items;
+	}
+	public double getSequence() {
+		return sequence;
+	}
+	public void setSequence(double sequence) {
+		this.sequence = sequence;
 	}
 	
 }

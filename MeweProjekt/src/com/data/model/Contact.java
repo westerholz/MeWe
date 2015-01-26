@@ -3,11 +3,14 @@ package com.data.model;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
+import javax.persistence.Table;
+@Entity
+@Table(name="Contact")
 public class Contact {
 
 	@Id
@@ -15,8 +18,9 @@ public class Contact {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String name;
+	private BankReference defaultBankReference;
 	private AccountingObject autoAssignedAccObj;
-	@OneToMany(mappedBy="BankReferenceID")
+	@OneToMany(mappedBy="ContactID")
 	private List<BankReference> bankReference;
 	
 	public String getName() {
@@ -38,14 +42,16 @@ public class Contact {
 		this.bankReference = bankReference;
 	}
 	public BankReference getDefaultBankReference(){
-		//TODO not implemented
-		return null;
+		return this.defaultBankReference;
 	}
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public void setDefaultBankReference(BankReference defaultBankReference) {
+		this.defaultBankReference = defaultBankReference;
 	}
 	
 }

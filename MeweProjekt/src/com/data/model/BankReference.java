@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,13 +24,17 @@ public class BankReference {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="BankReferenceId")
 	private long id;
+	@Column(name="NationalBankAccountNumber")
 	private String NationalBankAccountNumber; //"alte" Kontonummer
+	@Column(name="NationalBankCode")
 	private String NationalBankCode; //BLZ
-	
+	@ManyToOne
+	@JoinColumn(name="contactID")
+	private Contact contact;
+	@Column(name="IBAN")
 	private String IBAN;
+	@Column(name="BIC")
 	private String BIC;
-	
-	private boolean defaultBankReference;
 
 	public String getNationalBankAccountNumber() {
 		return NationalBankAccountNumber;
@@ -47,27 +53,21 @@ public class BankReference {
 	}
 
 	public String getIBAN() {
-		return IBAN;
+		return this.IBAN;
 	}
 
 	public void setIBAN(String iban) {
-		IBAN = iban;
+		this.IBAN = iban;
 	}
 
 	public String getBIC() {
 		return BIC;
 	}
-
+	public boolean isDefaultReference(){
+		return (this.contact.getDefaultBankReference().getId() == this.getId());
+	}
 	public void setBIC(String bic) {
 		BIC = bic;
-	}
-
-	public boolean isDefaultBankReference() {
-		return defaultBankReference;
-	}
-
-	public void setDefaultBankReference(boolean defaultBankReference) {
-		this.defaultBankReference = defaultBankReference;
 	}
 
 	public long getId() {
