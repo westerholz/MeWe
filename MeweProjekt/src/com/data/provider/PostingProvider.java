@@ -1,5 +1,5 @@
 package com.data.provider;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import com.data.model.Posting;
@@ -11,7 +11,7 @@ public class PostingProvider extends AbstractProvider<Posting> {
 	}
 	public List<Posting> getPostingsByDate(Date date){
 		StringBuffer sb = new StringBuffer();
-		sb.append("Select p FROM Posting_alt p WHERE p.postingDate = '" + date + "'");
+		sb.append("Select p FROM Posting p WHERE p.postingDate = '" + date + "'");
 		if(!em.isOpen()){
 			em = getEmf().createEntityManager();
 		}		

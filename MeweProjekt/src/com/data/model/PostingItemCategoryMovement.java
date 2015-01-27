@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("CategoryMovement")
-public abstract class PostingItemCategoryMovement extends PostingItem{
+public class PostingItemCategoryMovement extends PostingItem{
 
 	
 }

@@ -3,12 +3,22 @@
      <persistence-unit name="mewe" transaction-type="RESOURCE_LOCAL">
      	<provider>org.hibernate.ejb.HibernatePersistence</provider>
           	<class>com.data.model.Posting</class>
+          	<class>com.data.model.Contact</class>
+          	<class>com.data.model.PostingItem</class>
+          	<class>com.data.model.PostingItemBankMovement</class>
+          	<class>com.data.model.PostingItemCategoryMovement</class>
           	<class>com.data.model.AccountingObjectCategory</class>
           	<class>com.data.model.AccountingObjectCostCategory</class>
-          	<class>com.data.model.User</class>
+          	<class>com.data.model.AccountingObjectHouseBankAccount</class>
+          	<class>com.data.model.BankStatementLine</class>
+          	<class>com.data.model.OnlineBankingParameters</class>
+          	<class>com.data.model.BankReference</class>
+          	<class>com.data.model.AccountingObjectIncomeCategory</class>
+          	<class>com.data.model.AccountingObject</class>
+
      	
      	<properties>
-			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/mewe"/>
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/MEWE"/>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
 			<property name="hibernate.connection.username" value="root"/>
 			<property name="hibernate.connection.password" value="Mewe20!5"/> <!-- Euer Passwort für den root-Account für MySQL-Zugriff eintragen!!! -->

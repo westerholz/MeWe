@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import javax.persistence.Table;
+
 /**
  * A bank reference of a contact.
  * One could consider to split this in several sub-objects, like "German Bank Reference" and "SEPA Bank Reference".
@@ -23,13 +25,13 @@ public class BankReference {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="BankReferenceId")
-	private long id;
+	private long bankReferenceId;
 	@Column(name="NationalBankAccountNumber")
 	private String NationalBankAccountNumber; //"alte" Kontonummer
 	@Column(name="NationalBankCode")
 	private String NationalBankCode; //BLZ
 	@ManyToOne
-	@JoinColumn(name="contactID")
+	@JoinColumn(name="contact")
 	private Contact contact;
 	@Column(name="IBAN")
 	private String IBAN;
@@ -64,18 +66,18 @@ public class BankReference {
 		return BIC;
 	}
 	public boolean isDefaultReference(){
-		return (this.contact.getDefaultBankReference().getId() == this.getId());
+		return (this.contact.getDefaultBankReference().getBankReferenceId() == this.getBankReferenceId());
 	}
 	public void setBIC(String bic) {
 		BIC = bic;
 	}
 
-	public long getId() {
-		return id;
+	public long getBankReferenceId() {
+		return bankReferenceId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setBankReferenceId(long bankReferenceId) {
+		this.bankReferenceId = bankReferenceId;
 	}
 
 	

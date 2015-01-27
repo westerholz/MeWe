@@ -1,6 +1,8 @@
 package com.ui;
 
 
+import i18n.BundleNames;
+
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -30,7 +32,7 @@ public class PostingsView extends VerticalLayout implements View{
 	public PostingsView(){
 		//TODO Wie muss das Locale korrekt gesetzt werden -> Am besten in der Session!!
 		Locale locale = UI.getCurrent().getSession().getLocale();
-		ResourceBundle bundle = ResourceBundle.getBundle("i18n/messageBundle", locale);
+		ResourceBundle bundle = ResourceBundle.getBundle(BundleNames.ScreenLabels, locale);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		DecimalFormat df = new DecimalFormat();
 		

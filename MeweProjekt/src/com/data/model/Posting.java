@@ -1,6 +1,7 @@
 package com.data.model;
 
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ public class Posting {
 	@Id
 	@Column(name="PostingId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private long postingId;
 	@Temporal(TemporalType.DATE)
 	private Date postingDate;
 	@Temporal(TemporalType.DATE)
@@ -34,14 +35,14 @@ public class Posting {
 	private String currency;
 	private double sequence;
 	private String text;
-	@OneToMany(mappedBy="PostingItemID")
-	private List<PostingItem> items;
+	@OneToMany(mappedBy="posting")
+	private List<PostingItem> items = new ArrayList<PostingItem>();
 	
-	public long getId() {
-		return id;
+	public long getPostingId() {
+		return postingId;
 	}
-	public void setId(long id) {
-		this.id = id;
+	public void setPostingId(long postingId) {
+		this.postingId = postingId;
 	}
 	public Date getPostingDate() {
 		return postingDate;

@@ -1,25 +1,40 @@
 package com.data.model;
 
+import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Inheritance
-@DiscriminatorColumn(name="AccountObjectCategory")
-@Table(name="AccountingObjectCategories")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="AccountObjectCategoryType",discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("AccountingObjectCategory")
+@Table(name="AccountingObjectCategory")
+@AttributeOverride(name = "AccountObjectCategory", 
+column = @Column(name="AccountObjectCategory", nullable=false, 
+    insertable = false, updatable = false))
 public abstract class AccountingObjectCategory implements AccountingObject {
 	@Id
 	@Column(name="AccountObjectCategoryId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	@Column(name="Name")
+	private long accountObjectCategoryId;
 	private String name;
+	
+	public long getAccountObjectCategoryId() {
+		return accountObjectCategoryId;
+	}
+
+	public void setAccountObjectCategoryId(long accountObjectCategoryId) {
+		this.accountObjectCategoryId = accountObjectCategoryId;
+	}
 	@Override
 	public String getName() {
 		return this.name;

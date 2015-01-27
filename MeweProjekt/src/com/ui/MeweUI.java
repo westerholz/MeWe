@@ -26,6 +26,7 @@ import com.vaadin.server.SystemMessagesProvider;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.VerticalLayout;
 
 //@SuppressWarnings("serial")
 @PreserveOnRefresh
@@ -49,7 +50,7 @@ public class MeweUI extends UI {
 		Locale locale;
 		private void initializeLocaleAndBundle(){
 						
-			// TODO 1) Locale vernünftig zuweisen 
+			// TODO Locale vernünftig zuweisen, auf welcher Basis? 
 						locale = Locale.GERMANY;
 						errorMessages = ResourceBundle.getBundle("i18n/errorMessages",locale);
 						logger.debug("Locale and Bundle for error messages set!" );
@@ -98,25 +99,29 @@ public class MeweUI extends UI {
 			//TODO: 2) Was muss noch an die Sesion?(ResourceBundles)
 			initializeLocaleAndBundle();
 			event.getSession().setLocale(locale);	
-			event.getSession().setAttribute("errorMessages", errorMessages);
+			event.getSession().setAttribute("errorMessagesLocation", "i18n/errorMessages");
+			event.getSession().setAttribute("messageBundleLocation", "i18n/messageBundle");
 			logger.info("Session intilized!");
 		}
 	}
 
 	@Override
 	protected void init(VaadinRequest request) {
-		
+		final VerticalLayout layout = new VerticalLayout();
+		layout.setMargin(true);
+		setContent(layout);
+		//TODO: Add Error page and Error Navigation to Navigator
 		navigator = new Navigator(this,this);
 		String viewName = "Startseite";
 		
 		//navigator.addView(viewName, new Startseite());
 		try{
-		navigator.addView(viewName, (View)Class.forName("com.ui.Startseite").newInstance());
-		}catch(Exception e){
-			//TODO: What should be done here?
-			logger.error("Startseite View couldn't be added to navigator!");
-		}
+		navigator.addView(viewName,(View)Class.forName("com.ui.Startseite").newInstance());
 		navigator.navigateTo(viewName);
+		}catch(Exception cnfe){
+		cnfe.printStackTrace();	
+		}
+
 		   // Create the content root layout for the UI
         //VerticalLayout content = new VerticalLayout();
         //setContent(content);
