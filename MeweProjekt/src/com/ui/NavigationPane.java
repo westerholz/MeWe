@@ -40,7 +40,19 @@ public class NavigationPane extends CustomComponent {
 					String myView = ResourceBundle.getBundle(BundleNames.ScreenLabels,
 							UI.getCurrent().getSession().getLocale()).getString("postings");
 					navigator.addView(myView, new PostingsView());
-				} else // if(selectedItem.getText() ==
+					navigator.navigateTo(myView);
+				} 
+				else if(selectedItem.getText() == ResourceBundle.getBundle(BundleNames.ScreenLabels,
+						UI.getCurrent().getSession().getLocale()).getString("costCategoryCreate")){
+						navigator.addView("Create Cost Category",new CostCategoryCreate());
+						navigator.navigateTo("Create Cost Category");
+				}
+				else if(selectedItem.getText() == ResourceBundle.getBundle(BundleNames.ScreenLabels,
+						UI.getCurrent().getSession().getLocale()).getString("costCategoriesShow")){
+						navigator.addView("Show Cost Categories", new CostCategoriesView());
+						navigator.navigateTo("Show Cost Categories");
+				}
+				else // if(selectedItem.getText() ==
 						// ResourceBundle.getBundle(BundleNames.ScreenLabels,UI.getCurrent().getSession().getLocale()).getString("posting_create_man"))
 				{
 					Notification.show(

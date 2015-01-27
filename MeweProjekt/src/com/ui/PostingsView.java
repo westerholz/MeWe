@@ -31,8 +31,7 @@ public class PostingsView extends VerticalLayout implements View{
 
 	public PostingsView(){
 		//TODO Wie muss das Locale korrekt gesetzt werden -> Am besten in der Session!!
-		Locale locale = UI.getCurrent().getSession().getLocale();
-		ResourceBundle bundle = ResourceBundle.getBundle(BundleNames.ScreenLabels, locale);
+		ResourceBundle bundle = ResourceBundle.getBundle(BundleNames.ScreenLabels, UI.getCurrent().getSession().getLocale());
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		DecimalFormat df = new DecimalFormat();
 		
@@ -47,7 +46,7 @@ public class PostingsView extends VerticalLayout implements View{
 			Posting p = postings.get(i);
 			Currency cr = Currency.getInstance(p.getCurrency());
 			df.setCurrency(cr);
-			postingsTable.addItem(new Object[]{sdf.format(p.getPostingDate()),df.format(p.getAmount()) + " " +cr.getSymbol(locale),p.getText()},i+1);
+			postingsTable.addItem(new Object[]{sdf.format(p.getPostingDate()),df.format(p.getAmount()) + " " +cr.getSymbol(UI.getCurrent().getSession().getLocale()),p.getText()},i+1);
 			postingsTable.addItemClickListener(new ItemClickEvent.ItemClickListener() {
 				
 				@Override

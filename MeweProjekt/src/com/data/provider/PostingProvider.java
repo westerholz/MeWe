@@ -19,5 +19,9 @@ public class PostingProvider extends AbstractProvider<Posting> {
 		List<Posting> resultList = (List<Posting>)em.createQuery(sb.toString()).getResultList();
 		return resultList;
 	}
+	public boolean addPosting(Posting p){
+		
+		return super.save(p);
+	}
 
 }
