@@ -33,7 +33,7 @@ public class Posting {
 	private Date modificationDate;
 	private double amount;
 	private String currency;
-	private double sequence;
+	private long sequence;
 	private String text;
 	@OneToMany(mappedBy="posting")
 	private List<PostingItem> items = new ArrayList<PostingItem>();
@@ -86,10 +86,10 @@ public class Posting {
 	public void setItems(List<PostingItem> items) {
 		this.items = items;
 	}
-	public double getSequence() {
+	public long getSequence() {
 		return sequence;
 	}
-	public void setSequence(double sequence) {
+	public void setSequence(long sequence) {
 		this.sequence = sequence;
 	}
 	

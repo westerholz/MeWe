@@ -1,4 +1,4 @@
-package com.ui;
+package com.ui.components;
 
 import i18n.BundleNames;
 
@@ -6,30 +6,28 @@ import java.util.ResourceBundle;
 
 import com.data.model.AccountingObjectCostCategory;
 import com.data.provider.CostCategoryProvider;
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.ui.AccountingObjectCreate;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.Label;
+import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-public class CostCategoryCreate extends VerticalLayout implements View {
+public class CreateCostCategoryComponent extends CustomComponent{ //implements View {
 		private ResourceBundle screenLabels;
 		private ResourceBundle errorMessages;
-	public CostCategoryCreate(){
+	public CreateCostCategoryComponent(){
 		screenLabels = ResourceBundle.getBundle(BundleNames.ScreenLabels, UI.getCurrent().getSession().getLocale());
 		errorMessages = ResourceBundle.getBundle(BundleNames.ErrorMessage, UI.getCurrent().getSession().getLocale());
 		VerticalLayout vl = new VerticalLayout();
 		vl.addComponent(new NavigationPane());
-		GridLayout gl = new GridLayout(2,2);
+		//GridLayout gl = new GridLayout(2,2);
 		TextField name = new TextField();
-		vl.addComponent(gl);
+		//vl.addComponent(gl);
 		
 		//Create Grid for Createing a Cost Category
 		Button create = new Button(screenLabels.getString("create"));
@@ -53,21 +51,20 @@ public class CostCategoryCreate extends VerticalLayout implements View {
 				}
 			}
 		});
-		gl.addComponent(new Label("Name"), 0, 0);
-		gl.addComponent(name, 1, 0);
-		gl.addComponent(create, 1, 1);
+		//gl.addComponent(new Label("Name"), 0, 0);
+		//gl.addComponent(name, 1, 0);
+		//gl.addComponent(create, 1, 1);
 		
 		
-		
-		
-		addComponent(vl);
+		vl.addComponent(new AccountingObjectCreate());
+		this.setCompositionRoot(vl);
 	}
 	
 	
-	@Override
-	public void enter(ViewChangeEvent event) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void enter(ViewChangeEvent event) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 }

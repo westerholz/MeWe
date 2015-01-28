@@ -1,4 +1,4 @@
-package com.ui;
+package com.ui.components;
 
 import i18n.BundleNames;
 
@@ -7,16 +7,15 @@ import java.util.ResourceBundle;
 
 import com.data.model.AccountingObjectCostCategory;
 import com.data.provider.CostCategoryProvider;
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-public class CostCategoriesView extends VerticalLayout implements View{
+public class ShowCostCategoriesComponent extends CustomComponent{//VerticalLayout {//implements View{
 	private ResourceBundle screenLabels;
 	private ResourceBundle errorMessages;
-public CostCategoriesView(){
+public ShowCostCategoriesComponent(){
 	screenLabels = ResourceBundle.getBundle(BundleNames.ScreenLabels, UI.getCurrent().getSession().getLocale());
 	errorMessages = ResourceBundle.getBundle(BundleNames.ErrorMessage, UI.getCurrent().getSession().getLocale());
 	VerticalLayout vl = new VerticalLayout();
@@ -50,11 +49,12 @@ public CostCategoriesView(){
 	}
 	costCategoriesTable.setPageLength(costCategoriesTable.size());
 	vl.addComponent(costCategoriesTable);
-	addComponent(vl);
+	//addComponent(vl);
+	setCompositionRoot(vl);
 }
-	@Override
-	public void enter(ViewChangeEvent event) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void enter(ViewChangeEvent event) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 }

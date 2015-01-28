@@ -1,4 +1,4 @@
-package com.ui;
+package com.ui.components;
 
 
 import i18n.BundleNames;
@@ -8,28 +8,26 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.data.model.Posting;
 import com.data.provider.PostingProvider;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
-public class PostingsView extends VerticalLayout implements View{
+public class PostingsTableComponent extends CustomComponent{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public PostingsView(){
+	public PostingsTableComponent(){
 		//TODO Wie muss das Locale korrekt gesetzt werden -> Am besten in der Session!!
 		ResourceBundle bundle = ResourceBundle.getBundle(BundleNames.ScreenLabels, UI.getCurrent().getSession().getLocale());
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
@@ -37,7 +35,7 @@ public class PostingsView extends VerticalLayout implements View{
 		
 		PostingProvider pp = new PostingProvider();
 		List<Posting> postings = pp.getPostingsByDate(Date.valueOf("2015-01-20"));
-		addComponent(new Label("Postings: " + postings.size()));
+		//addComponent(new Label("Postings: " + postings.size()));
 		Table postingsTable = new Table(bundle.getString("turnovers"));
 		postingsTable.addContainerProperty(bundle.getString("postingDate"), String.class, null);
 		postingsTable.addContainerProperty(bundle.getString("posting"), String.class, null);
@@ -55,8 +53,9 @@ public class PostingsView extends VerticalLayout implements View{
 					String viewName = bundle.getString("singleView");
 					int id = Integer.parseInt(event.getItemId().toString());				
 					//System.out.println(id-1);
-					navigator.addView(viewName, new SinglePostingView((Posting)postings.get(id-1)));
-					navigator.navigateTo(viewName);
+					//navigator.addView(viewName, new SinglePostingComponent((Posting)postings.get(id-1)));
+					//navigator.navigateTo(viewName);
+					
 				}
 			});
 			//HorizontalLayout hl = new HorizontalLayout();
@@ -65,14 +64,7 @@ public class PostingsView extends VerticalLayout implements View{
 		}
 		postingsTable.setPageLength(postingsTable.size());
 		//postingsTable.setE
-		addComponent(postingsTable);
+		this.setCompositionRoot(postingsTable);
 	}
-	
-	@Override
-	public void enter(ViewChangeEvent event) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
 }

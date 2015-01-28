@@ -116,7 +116,8 @@ public class MeweUI extends UI {
 		
 		//navigator.addView(viewName, new Startseite());
 		try{
-		navigator.addView(viewName,(View)Class.forName("com.ui.Startseite").newInstance());
+			navigator.addView(viewName,(View)Class.forName("com.ui.views.TestTabSheet").newInstance());
+//		navigator.addView(viewName,(View)Class.forName("com.ui.Startseite").newInstance());
 		navigator.navigateTo(viewName);
 		}catch(Exception cnfe){
 		cnfe.printStackTrace();	

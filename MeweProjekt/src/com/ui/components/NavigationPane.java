@@ -1,4 +1,4 @@
-package com.ui;
+package com.ui.components;
 
 import i18n.BundleNames;
 
@@ -39,18 +39,18 @@ public class NavigationPane extends CustomComponent {
 						UI.getCurrent().getSession().getLocale()).getString("postings_show")) {
 					String myView = ResourceBundle.getBundle(BundleNames.ScreenLabels,
 							UI.getCurrent().getSession().getLocale()).getString("postings");
-					navigator.addView(myView, new PostingsView());
-					navigator.navigateTo(myView);
+					//navigator.addView(myView, new PostingsTableComponent());
+					//navigator.navigateTo(myView);
 				} 
 				else if(selectedItem.getText() == ResourceBundle.getBundle(BundleNames.ScreenLabels,
 						UI.getCurrent().getSession().getLocale()).getString("costCategoryCreate")){
-						navigator.addView("Create Cost Category",new CostCategoryCreate());
-						navigator.navigateTo("Create Cost Category");
+						//navigator.addView("Create Cost Category",new CostCategoryCreate());
+//						navigator.navigateTo("Create Cost Category");
 				}
 				else if(selectedItem.getText() == ResourceBundle.getBundle(BundleNames.ScreenLabels,
 						UI.getCurrent().getSession().getLocale()).getString("costCategoriesShow")){
-						navigator.addView("Show Cost Categories", new CostCategoriesView());
-						navigator.navigateTo("Show Cost Categories");
+						//navigator.addView("Show Cost Categories", new CostCategoriesView());
+//						navigator.navigateTo("Show Cost Categories");
 				}
 				else // if(selectedItem.getText() ==
 						// ResourceBundle.getBundle(BundleNames.ScreenLabels,UI.getCurrent().getSession().getLocale()).getString("posting_create_man"))
